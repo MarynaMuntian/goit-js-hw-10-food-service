@@ -9,16 +9,17 @@ const body = document.querySelector('body');
 body.classList.add(Theme.LIGHT);
 
 const onThemeChange = () => {
-    if (themeSwitcher.checked === true) {
-        body.classList.add(Theme.DARK);
-        body.classList.remove(Theme.LIGHT);
-        localStorage.setItem('theme', Theme.DARK);
+    if (themeSwitcher.checked) {
+        editClass(Theme.DARK, Theme.LIGHT);
     } else {
-        body.classList.add(Theme.LIGHT);
-        body.classList.remove(Theme.DARK);
-        localStorage.setItem('theme', Theme.LIGHT);
+        editClass(Theme.LIGHT, Theme.DARK);
     }
 }
+
+const editClass = (addClass, removeClass) => {
+    body.classList.add(addClass);
+        body.classList.remove(removeClass);
+        localStorage.setItem('theme', addClass);}
 
 const currentTheme = () => {
     if (localStorage.getItem('theme') === Theme.DARK) {
